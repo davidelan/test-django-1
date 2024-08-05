@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Your ToDo Lists{% endblock %}
+
+{% block content %}
+    <h1>Your ToDo Lists</h1>
+    <a href="{% url 'add_todo_list' %}">Add a New List</a>
+    <ul>
+        {% for todo_list in lists %}
+            <li>
+                <a href="{% url 'todo_list_detail' pk=todo_list.pk %}">{{ todo_list.name }}</a>
+                <a href="{% url 'edit_todo_list' pk=todo_list.pk %}">Edit</a>
+                <a href="{% url 'delete_todo_list' pk=todo_list.pk %}">Delete</a>
+            </li>
+        {% empty %}
+            <li>No ToDo lists available.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
